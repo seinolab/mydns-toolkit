@@ -1,0 +1,11 @@
+[Unit]
+Description=Notify my IP address to MyDNS
+Wants=network-online.target
+
+[Timer]
+OnCalendar=*-*-* 06:00
+RandomizedDelaySec=3600s
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Notify my IP address to MyDNS
+After=network-online.target
+
+[Service]
+Type=oneshot
+Nice=19
+IOSchedulingClass=2
+IOSchedulingPriority=7
+ExecStart=/etc/mydns/notify.sh
