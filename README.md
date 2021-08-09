@@ -63,8 +63,8 @@ systemd で起動する場合は、以下の設定をインストールします
 ```
 MYDNS_TOOLKIT_URL=https://raw.githubusercontent.com/seinolab/mydns-toolkit/main
 PREFIX=/usr/local
-mkdir -p ${PREFIX}/systemd/system
-pushd ${PREFIX}/systemd/system
+mkdir -p ${PREFIX}/lib/systemd/system
+pushd ${PREFIX}/lib/systemd/system
 curl -sSLO "${MYDNS_TOOLKIT_URL}/mydns-notify-ip.{timer,service}"
 popd
 ```
@@ -73,6 +73,18 @@ popd
 
 ```
 systemctl edit mydns-notify-ip.timer
+```
+
+エディタが起動するので、`### Anything between here ...` から `### Lines below ...` の間に、以下のように上書きしたい設定を記述します。
+
+```
+### Anything between here and the comment below will become the new contents of the file
+
+[Timer]
+OnCalendar=
+OnCalendar=*-*-* 12:00
+
+### Lines below this comment will be discarded
 ```
 
 設定が変更できたら、タイマーを有効にします。
