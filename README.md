@@ -14,8 +14,10 @@ Let's Encrypt でワイルドカード証明書を取得する処理を自動化
 MYDNS_TOOLKIT_URL=https://raw.githubusercontent.com/seinolab/mydns-toolkit/main
 PREFIX=/usr/local
 mkdir -p ${PREFIX}/sbin
-curl -sSL "${MYDNS_TOOLKIT_URL}/{delete,notify,regist}.sh" -o ${PREFIX}/sbin
-chmod 700 ${PREFIX}/sbin/{delete,notify,regist}.sh
+pushd ${PREFIX}/sbin
+curl -sSLO "${MYDNS_TOOLKIT_URL}/{delete,notify,regist}.sh"
+chmod 700 {delete,notify,regist}.sh
+popd
 ```
 
 MyDNS の ID とパスワードを設定します。/root/.mydns に以下のように `:` でつなげて ID とパスワードを書きます。パーミッションは 600 にしましょう。
@@ -59,8 +61,12 @@ mydns999999:password
 systemd で起動する場合は、以下の設定をインストールします。
 
 ```
+MYDNS_TOOLKIT_URL=https://raw.githubusercontent.com/seinolab/mydns-toolkit/main
+PREFIX=/usr/local
 mkdir -p ${PREFIX}/systemd/system
-curl -sSL "${MYDNS_TOOLKIT_URL}/mydns-notify-ip.{timer,service}" -o ${PREFIX}/systemd/system
+pushd ${PREFIX}/systemd/system
+curl -sSLO "${MYDNS_TOOLKIT_URL}/mydns-notify-ip.{timer,service}"
+popd
 ```
 
 起動時刻を変更する場合は、以下のように入力して設定を変更します。
