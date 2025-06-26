@@ -1,7 +1,7 @@
 #!/bin/bash
 
 URL="https://www.mydns.jp/directedit.html"
-AUTH=`head -c -1 /root/.mydns | base64`
+AUTH=$(tr -d '\n' < /root/.mydns | base64)
 
   env \
 | grep ^CERTBOT \
