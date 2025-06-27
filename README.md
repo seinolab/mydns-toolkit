@@ -1,6 +1,6 @@
 # mydns-toolkit
 
-MyDNS を利用する上で、私が使用しているスクリプトです。本家配布のスクリプトは PHP で書かれていますが、私は PHP を使ってないので、シェルスクリプトだけで書き直しました。CentOS 7 と Fedora 34以降で使用実績があり、現在も使用中です。利用制限はありませんので、ご自由にお使いください。
+MyDNS を利用する上で、私が使用しているスクリプトです。本家配布の同機能のスクリプトは PHP で書かれていますが、私は PHP を使ってないので、シェルスクリプトだけで書き直しました。CentOS 7 と Fedora 34以降で使用実績があり、現在も使用中です。利用制限はありませんので、ご自由にお使いください。
 
 ## 概要
 
@@ -55,10 +55,10 @@ mydns999999:password
 
 ```
 $ sudo certbot certonly --dry-run --manual --preferred-challenges dns \
-    --manual-auth-hook　'/usr/libexec/mydns-toolkit/regist.sh' \
-    --manual-cleanup-hook '/usr/libexec/mydns-toolkit/delete.sh' \
-    --domain example.com --domain '*.example.com' \
-    --server https://acme-v02.api.letsencrypt.org/directory
+		--manual-auth-hook　'/usr/libexec/mydns-toolkit/regist.sh' \
+		--manual-cleanup-hook '/usr/libexec/mydns-toolkit/delete.sh' \
+		--domain example.com --domain '*.example.com' \
+		--server https://acme-v02.api.letsencrypt.org/directory
 ```
 
 動作確認のために、`regist.sh` と `delete.sh` は以下のようなログを出力します。
